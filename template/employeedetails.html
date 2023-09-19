@@ -1,0 +1,187 @@
+{% extends 'base.html'%} {% block content %}
+<!-- Section: Design Block -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Fixed table header</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        h1 {
+            font-size: 30px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        table {
+            width: 100%;
+            table-layout: auto;
+            align-self: center;
+        }
+        
+        thead {
+            background-color: rgba(10, 0, 0, 0.432);
+            height: 50px;
+        }
+        
+        tbody {
+            height: 50px;
+            overflow-x: auto;
+            margin-top: 0px;
+            background-color: rgba(94, 132, 245, 0.432);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        th {
+            padding: 5px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 15px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        
+        td {
+            padding: 5px;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: 300;
+            font-size: 15px;
+            color: #fff;
+            border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+        }
+        /* demo styles */
+        
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+        body {
+            background: -webkit-linear-gradient(left, #001b54, #7384e4);
+            background: linear-gradient(to right, #001b54, #7384e4);
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        section {
+            margin: 10px;
+        }
+        /* follow me template */
+        
+        .made-with-love {
+            margin-top: 40px;
+            padding: 10px;
+            clear: left;
+            text-align: center;
+            font-size: 10px;
+            font-family: arial;
+            color: #fff;
+        }
+        
+        .made-with-love i {
+            font-style: normal;
+            color: #F50057;
+            font-size: 14px;
+            position: relative;
+            top: 2px;
+        }
+        
+        .made-with-love a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .made-with-love a:hover {
+            text-decoration: underline;
+        }
+        /* for custom scrollbar for webkit browser*/
+        
+         ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <section>
+        <!--for demo wrap-->
+        <h1>Employee Details</h1>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <!-- <button class="btn btn-primary me-md-2" type="button">Button</button> -->
+            <a href="addemployee"><button class="btn btn-primary" type="button" style="margin: 10px;">Add Employee</button></a>
+        </div>
+        <div class="tbl-header">
+            <table>
+                <thead>
+
+                    <tr>
+                        <th><i class="fa fa-user-circle-o" aria-hidden="true" style="align-items: center; font-size: xx-large;"></i></th>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>Salary</th>
+                        <th colspan="2" style="align-items: center;;">Action</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    {% for emps in emp %}
+                    <tr>
+                        <td><i class="fa fa-user-circle-o" aria-hidden="true" style="align-items: center; font-size: xx-large;"></i></td>
+                        <td>{{emps.eid}}</td>
+                        <td>{{emps.name}}</td>
+                        <td>{{emps.age}}</td>
+                        <td>{{emps.mobile}}</td>
+                        <td>{{emps.email}}</td>
+                        <td>{{emps.city}}</td>
+                        <td>{{emps.salary}}</td>
+                        <td>
+                            <a class="fa fa-pencil-square-o" style="color: green; align-items: center; font-size: large;" href="{% url 'edit' emps.eid %}"></a>
+                        </td>
+                        <td>
+                            <a class="fa fa-trash-o" style="color: red; align-items: center; font-size: large;" href="{% url 'delete' emps.eid %}"></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script>
+        // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
+        $(window).on("load resize ", function() {
+            var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+            $('.tbl-header').css({
+                'padding-right': scrollWidth
+            });
+        }).resize();
+    </script>
+
+</body>
+
+</html>
+
+<!-- Section: Design Block -->
+
+{% endblock%}

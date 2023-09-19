@@ -1,0 +1,90 @@
+{% extends 'base.html'%} {% block content %}
+<!-- Section: Design Block -->
+<section class="text-center">
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+          background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+          height: 120px;
+          "></div>
+    <!-- Background image -->
+
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+        <div class="card-body py-5 px-md-5">
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="fw-bold mb-5">Update Employee Details</h2>
+                    <form action="{% url 'update' emps.eid %}" method="post">
+                        {% csrf_token %}
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+
+                            <input type="number" name="eid" id="form3Example3" class="form-control" placeholder="" value="{{emps.eid}}" />
+                            <label class="form-label" for="form3Example3">Employee ID</label>
+                        </div>
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+
+                            <input type="text" name="name" id="form3Example3" class="form-control" placeholder="" value="{{emps.name}}" />
+                            <label class="form-label" for="form3Example3">Employee Name</label>
+                        </div>
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+
+                                    <input type="number" name="age" id="form3Example1" class="form-control" placeholder="" value="{{emps.age}}" />
+                                    <label class="form-label" for="form3Example1">Age</label>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+
+                                    <input type="number" name="mobile" id="form3Example2" class="form-control" placeholder="" value="{{emps.mobile}}" />
+                                    <label class="form-label" for="form3Example2">Moble</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+
+                            <input type="email" name="email" id="form3Example3" class="form-control" placeholder="" value="{{emps.email}}" />
+                            <label class="form-label" for="form3Example3">Email address</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+
+                                    <input type="text" name="city" id="form3Example1" class="form-control" placeholder="" value="{{emps.city}}" />
+                                    <label class="form-label" for="form3Example1">City</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+
+                                    <input type="number" name="salary" id="form3Example2" class="form-control" placeholder="" value="{{emps.salary}}" />
+                                    <label class="form-label" for="form3Example2">Salary</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Update Employee</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section: Design Block -->
+
+{% endblock%}
